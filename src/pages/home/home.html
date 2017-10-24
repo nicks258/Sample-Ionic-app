@@ -1,0 +1,68 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Home</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <h3>Ionic Menu Starter</h3>
+
+  <ion-list >
+    <br>
+    <div *ngFor="let attri of attri;" style="border-bottom:solid 1px #E0E0E0;margin-bottom:14px">
+      <ion-row>
+          <ion-item *ngIf="attri.fieldType=='TXT'">
+            <ion-input type="text" placeholder={{attri.lblName}}></ion-input>
+          </ion-item>
+        <ion-item *ngIf="attri.fieldType=='CMB'">
+            <ion-label>{{attri.lblName}}</ion-label>
+            <ion-checkbox color="dark" checked="true"></ion-checkbox>
+          </ion-item>
+
+        <ion-list *ngIf="attri.fieldType=='RDO'" radio-group>
+          <ion-list-header>
+            {{attri.lblName}}
+          </ion-list-header>
+
+          <ion-item>
+            <ion-label>{{attri.attrValue}}</ion-label>
+            <ion-radio checked="true" value={{attrValue}}></ion-radio>
+          </ion-item>
+
+          <ion-item>
+            <ion-label>Rust</ion-label>
+            <ion-radio value="rust"></ion-radio>
+          </ion-item>
+
+          <ion-item>
+            <ion-label>Python</ion-label>
+            <ion-radio value="python" disabled="true"></ion-radio>
+          </ion-item>
+        </ion-list>
+          <ion-item *ngIf="attri.fieldType=='TXA'">
+            <ion-label stacked>{{attri.lblName}}</ion-label>
+            <ion-input type="text"></ion-input>
+          </ion-item>
+
+        <!--comboValueMap-->
+
+          <ion-item *ngIf="attri.fieldType=='CMB'">
+
+            <ion-label>{{attri.lblName}}</ion-label>
+            <ion-select [(ngModel)]="gaming">
+              <div *ngFor="let options of attri.comboValueMap;">
+              <ion-option value="nes">{{options}}</ion-option>
+              </div>
+            </ion-select>
+
+          </ion-item>
+
+      </ion-row>
+    </div>
+  </ion-list>
+
+  <button ion-button secondary menuToggle>Toggle Menu</button>
+</ion-content>
